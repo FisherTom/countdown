@@ -38,9 +38,12 @@ function VowelCons({ setChosenLetters, chosenLetters }) {
   };
 
   return (
-    <div className="flex gap-2 justify-center">
-      <button onClick={() => handleAddLetter(true)}>Vowel</button>
-      <button onClick={() => handleAddLetter(false)}>Consonant</button>
+    <div>
+      <p className="p-2">Choose 9 letters to start the round</p>
+      <div className="flex gap-2 justify-center">
+        <button onClick={() => handleAddLetter(true)}>Vowel</button>
+        <button onClick={() => handleAddLetter(false)}>Consonant</button>
+      </div>
     </div>
   );
 }
