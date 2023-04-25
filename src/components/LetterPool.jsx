@@ -18,23 +18,21 @@ function LetterPool({
   };
 
   return (
-    <div className="flex justify-center">
-      <ul className="flex justify-center gap-6 border-2 p-2 w-fit">
-        {letterPool.map((letter, i) => {
-          return (
-            <li
-              key={i}
-              className={`w-20 h-20  flex justify-center items-center text-4xl ${
-                usedLetters.includes(i) ? "bg-slate-500" : "bg-slate-100"
-              } `}
-              onClick={() => handleAddWordLetter(letter, i)}
-            >
-              {letterPool[i]}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className="flex justify-center gap-4  w-fit rounded-xl">
+      {letterPool.map((letter, i) => {
+        return (
+          <li
+            key={i}
+            className={`w-20 h-20 rounded-lg flex justify-center items-center text-4xl ${
+              usedLetters.includes(i) ? "bg-gray-600" : "bg-slate-100"
+            } `}
+            onClick={() => handleAddWordLetter(letter, i)}
+          >
+            {letterPool[i]}
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 

@@ -19,40 +19,39 @@ function LetterInterface() {
     }
   }, [letterPool]);
 
-  const handleAddWord = () => {
-    setWords((currentWords) => [...currentWords, wordLetters.join("")]);
-  };
-
   return (
     <div className="flex flex-col items-center gap-4 ">
       <WordList words={words} />
 
-      <SelectedLetters
-        wordLetters={wordLetters}
-        setWordLetters={setWordLetters}
-        setUsedLetters={setUsedLetters}
-      />
-      <LetterPool
-        usedLetters={usedLetters}
-        setUsedLetters={setUsedLetters}
-        setWordLetters={setWordLetters}
-        letterPool={letterPool}
-      />
+      <div className="flex gap-2 w-full bg-gray-800 p-4 justify-center items-center">
+        {letterPoolFull ? (
+          <SelectedLetters
+            wordLetters={wordLetters}
+            setWordLetters={setWordLetters}
+            setUsedLetters={setUsedLetters}
+            setWords={setWords}
+          />
+        ) : (
+          <p>Select nine vowels or consonants to start the round</p>
+        )}
+      </div>
 
-      {letterPoolFull && (
-        <button
-          onClick={() => {
-            handleAddWord();
-            setWordLetters([]);
-            setUsedLetters([]);
-          }}
-        >
-          Add Word
-        </button>
-      )}
-      {!letterPoolFull && (
-        <VowelCons letterPool={letterPool} setLetterPool={setLetterPool} />
-      )}
+      <div className="flex flex-col items-center gap-4 border-2 border-black rounded-xl p-4">
+        {letterPool.length > 0 ? (
+          <LetterPool
+            usedLetters={usedLetters}
+            setUsedLetters={setUsedLetters}
+            setWordLetters={setWordLetters}
+            letterPool={letterPool}
+          />
+        ) : (
+          <></>
+        )}
+
+        {!letterPoolFull && (
+          <VowelCons letterPool={letterPool} setLetterPool={setLetterPool} />
+        )}
+      </div>
     </div>
   );
 }
