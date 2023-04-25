@@ -20,10 +20,11 @@ function LetterInterface() {
   }, [letterPool]);
 
   return (
-    <div className="flex flex-col items-center gap-4 ">
-      <WordList words={words} />
-
-      <div className="flex gap-2 w-full bg-gray-800 p-4 justify-center items-center">
+    <div className="flex flex-col items-center gap-4 p-4 ">
+      <div className="flex justify-center w-full max-w-[880px] bg-sky-200 rounded-xl">
+        <WordList words={words} />
+      </div>
+      <div className=" bg-gray-700 w-full max-w-[880px] p-4 rounded-xl">
         {letterPoolFull ? (
           <SelectedLetters
             wordLetters={wordLetters}
@@ -35,8 +36,7 @@ function LetterInterface() {
           <p>Select nine vowels or consonants to start the round</p>
         )}
       </div>
-
-      <div className="flex flex-col items-center gap-4 border-2 border-black rounded-xl p-4">
+      <div className="flex flex-col items-center gap-4 border-2  border-black rounded-xl p-4">
         {letterPool.length > 0 ? (
           <LetterPool
             usedLetters={usedLetters}

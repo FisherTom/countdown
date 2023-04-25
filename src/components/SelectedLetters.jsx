@@ -10,54 +10,45 @@ function SelectedLetters({
     setWords((currentWords) => [...currentWords, wordLetters.join("")]);
   };
   return (
-    <div className="flex gap-2 flex-col justify-center items-center">
-      <ul className="flex justify-center gap-6  p-2 w-fit">
-        {wordLetters.map((letter, i) => {
-          return (
-            <li
-              key={i}
-              className={
-                "w-20 h-20 bg-white rounded-lg flex justify-center items-center text-4xl"
-              }
-            >
-              {letter}
-            </li>
-          );
-        })}
-      </ul>
-      <div className="flex gap-4">
-        {wordLetters.length > 0 ? (
-          <div
-            onClick={() => {
-              setWordLetters([]);
-              setUsedLetters([]);
-            }}
-            className={
-              "w-20 h-20 bg-red-400 rounded-full flex justify-center items-center text-xl"
+    <div className="flex gap-6 flex-col  items-center">
+      <p className="text-6xl tracking-widest capitalize bg-white py-2 px-10 rounded-full">
+        {Array(9)
+          .fill("_")
+          .map((letter, index) => {
+            if (index < wordLetters.length) {
+              return wordLetters[index];
+            } else {
+              return letter;
             }
-          >
-            Clear
-          </div>
-        ) : (
-          <></>
-        )}
+          })
+          .join("")}
+      </p>
 
-        {wordLetters.length > 0 ? (
-          <div
-            onClick={() => {
-              handleAddWord();
-              setWordLetters([]);
-              setUsedLetters([]);
-            }}
-            className={
-              "w-20 h-20 bg-green-400 rounded-full flex justify-center items-center text-xl"
-            }
-          >
-            Add
-          </div>
-        ) : (
-          <></>
-        )}
+      <div className="flex gap-12">
+        <div
+          onClick={() => {
+            setWordLetters([]);
+            setUsedLetters([]);
+          }}
+          className={
+            "w-32 h-16 bg-red-400 text-red-900 font-extrabold rounded-full flex justify-center items-center text-xl"
+          }
+        >
+          Clear
+        </div>
+
+        <div
+          onClick={() => {
+            handleAddWord();
+            setWordLetters([]);
+            setUsedLetters([]);
+          }}
+          className={
+            "w-32 h-216 bg-green-400 text-green-900 font-extrabold rounded-full flex justify-center items-center text-xl"
+          }
+        >
+          Add
+        </div>
       </div>
     </div>
   );

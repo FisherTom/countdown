@@ -18,7 +18,7 @@ function LetterPool({
   };
 
   return (
-    <ul className="flex justify-center gap-4  w-fit rounded-xl">
+    <ul className="flex justify-center flex-wrap gap-4  w-fit rounded-xl">
       {letterPool.map((letter, i) => {
         return (
           <li
