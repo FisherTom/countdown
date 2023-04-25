@@ -1,6 +1,6 @@
 import React from "react";
 
-function VowelCons({ setChosenLetters, chosenLetters }) {
+function VowelCons({ setLetterPool, letterPool }) {
   let vowels = ["a", "e", "i", "o", "u"];
   let cons = [
     "b",
@@ -27,11 +27,11 @@ function VowelCons({ setChosenLetters, chosenLetters }) {
   ];
 
   const handleAddLetter = (isVowel) => {
-    if (chosenLetters.length < 9) {
+    if (letterPool.length < 9) {
       let newLetter = isVowel
         ? vowels[Math.floor(Math.random() * vowels.length)]
         : cons[Math.floor(Math.random() * cons.length)];
-      setChosenLetters((currentLetters) => {
+      setLetterPool((currentLetters) => {
         return [...currentLetters, newLetter];
       });
     }

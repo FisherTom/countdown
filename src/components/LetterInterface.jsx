@@ -1,67 +1,57 @@
 import React, { useEffect, useState } from "react";
+import LetterPool from "./LetterPool";
 import SelectedLetters from "./SelectedLetters";
 import VowelCons from "./VowelCons";
+import WordList from "./WordList";
 
 function LetterInterface() {
-  const [chosenLetters, setChosenLetters] = useState([]);
-  const [nineChosen, setNineChosen] = useState(false);
+  const [letterPool, setLetterPool] = useState([]);
+  const [letterPoolFull, setLetterPoolFull] = useState(false);
   const [wordLetters, setWordLetters] = useState([]);
   const [usedLetters, setUsedLetters] = useState([]);
+  const [words, setWords] = useState([]);
 
   useEffect(() => {
-    if (chosenLetters.length >= 9) {
-      setNineChosen(true);
+    if (letterPool.length >= 9) {
+      setLetterPoolFull(true);
     } else {
-      setNineChosen(false);
+      setLetterPoolFull(false);
     }
-  }, [chosenLetters]);
+  }, [letterPool]);
+
+  const handleAddWord = () => {
+    setWords((currentWords) => [...currentWords, wordLetters.join("")]);
+  };
 
   return (
-    <div className="flex flex-col items-center ">
-      {nineChosen && (
-        <div className="flex gap-2 justify-center p-2">
-          <button
-            onClick={() => {
-              setWordLetters([]);
-              setUsedLetters([]);
-            }}
-          >
-            Clear
-          </button>
-          <button>Add Word</button>
-        </div>
-      )}
-      {nineChosen &&
-        (wordLetters.length !== 0 ? (
-          <ul className="flex justify-center gap-6 bg-blue-400 p-2 w-fit">
-            {wordLetters.map((letter, i) => {
-              return (
-                <li
-                  key={i}
-                  className={
-                    "w-20 h-20 bg-gray-300 flex justify-center items-center"
-                  }
-                >
-                  {letter}
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <p>Select letters to make a word</p>
-        ))}
+    <div className="flex flex-col items-center gap-4 ">
+      <WordList words={words} />
 
       <SelectedLetters
+        wordLetters={wordLetters}
+        setWordLetters={setWordLetters}
+        setUsedLetters={setUsedLetters}
+      />
+      <LetterPool
         usedLetters={usedLetters}
         setUsedLetters={setUsedLetters}
         setWordLetters={setWordLetters}
-        chosenLetters={chosenLetters}
+        letterPool={letterPool}
       />
-      {!nineChosen && (
-        <VowelCons
-          chosenLetters={chosenLetters}
-          setChosenLetters={setChosenLetters}
-        />
+
+      {letterPoolFull && (
+        <button
+          onClick={() => {
+            handleAddWord();
+            setWordLetters([]);
+            setUsedLetters([]);
+          }}
+        >
+          Add Word
+        </button>
+      )}
+      {!letterPoolFull && (
+        <VowelCons letterPool={letterPool} setLetterPool={setLetterPool} />
       )}
     </div>
   );
