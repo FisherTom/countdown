@@ -1,12 +1,10 @@
 import "./App.css";
-import LetterInterface from "./components/LetterInterface";
-import Timer from "./components/Timer";
+import GameInterface from "./components/GameInterface";
 
 function App() {
   return (
-    <div className="App">
-      <Timer />
-      <LetterInterface />
+    <div className="bg-slate-200">
+      <GameInterface />
     </div>
   );
 }

@@ -39,9 +39,23 @@ function VowelCons({ setLetterPool, letterPool }) {
 
   return (
     <div>
-      <div className="flex gap-2 justify-center">
-        <button onClick={() => handleAddLetter(true)}>Vowel</button>
-        <button onClick={() => handleAddLetter(false)}>Consonant</button>
+      <div className="flex gap-6 justify-center">
+        <div
+          className={
+            "px-12 h-16 bg-red-400 text-red-900 font-extrabold rounded-full flex justify-center items-center text-xl"
+          }
+          onClick={() => handleAddLetter(true)}
+        >
+          Vowel
+        </div>
+        <div
+          className={
+            "px-12  h-16 bg-green-400 text-green-900 font-extrabold rounded-full flex justify-center items-center text-xl"
+          }
+          onClick={() => handleAddLetter(false)}
+        >
+          Consonant
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LetterPool from "./LetterPool";
 import SelectedLetters from "./SelectedLetters";
+import Timer from "./Timer";
 import VowelCons from "./VowelCons";
 import WordList from "./WordList";
 
@@ -20,23 +21,24 @@ function LetterInterface() {
   }, [letterPool]);
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4 ">
-      <div className="flex justify-center w-full max-w-[880px] bg-sky-200 rounded-xl">
-        <WordList words={words} />
+    <div className="flex flex-col items-center justify-center gap-8 p-4 min-h-screen">
+      <Timer />
+
+      <WordList words={words} />
+      <div
+        className={`flex flex-col justify-center bg-gray-700 w-full px-4  max-w-[880px] rounded-xl transition-all duration-700 overflow-hidden ${
+          letterPoolFull ? "h-60 py-6" : "h-0 py-0"
+        }`}
+      >
+        <SelectedLetters
+          wordLetters={wordLetters}
+          setWordLetters={setWordLetters}
+          setUsedLetters={setUsedLetters}
+          setWords={setWords}
+        />
       </div>
-      <div className=" bg-gray-700 w-full max-w-[880px] p-4 rounded-xl">
-        {letterPoolFull ? (
-          <SelectedLetters
-            wordLetters={wordLetters}
-            setWordLetters={setWordLetters}
-            setUsedLetters={setUsedLetters}
-            setWords={setWords}
-          />
-        ) : (
-          <p>Select nine vowels or consonants to start the round</p>
-        )}
-      </div>
-      <div className="flex flex-col items-center gap-4 border-2  border-black rounded-xl p-4">
+
+      <div className="flex flex-col items-center gap-12 rounded-xl p-4">
         {letterPool.length > 0 ? (
           <LetterPool
             usedLetters={usedLetters}
@@ -47,7 +49,6 @@ function LetterInterface() {
         ) : (
           <></>
         )}
-
         {!letterPoolFull && (
           <VowelCons letterPool={letterPool} setLetterPool={setLetterPool} />
         )}
