@@ -1,30 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { consDistributuon, vowelDistributuon } from "../letterDistribution";
 
 function VowelCons({ setLetterPool, letterPool }) {
-  let vowels = ["a", "e", "i", "o", "u"];
-  let cons = [
-    "b",
-    "c",
-    "d",
-    "f",
-    "g",
-    "h",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-  ];
+  const [vowels, setVowels] = useState([]);
+  const [cons, setCons] = useState([]);
+
+  useEffect(() => {
+    setVowels(
+      Object.entries(vowelDistributuon).flatMap(([letter, count]) => {
+        return Array(count).fill(letter);
+      })
+    );
+    setCons(
+      Object.entries(consDistributuon).flatMap(([letter, count]) => {
+        return Array(count).fill(letter);
+      })
+    );
+  }, []);
 
   const handleAddLetter = (isVowel) => {
     if (letterPool.length < 9) {
