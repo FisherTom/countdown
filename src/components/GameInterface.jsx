@@ -41,7 +41,7 @@ function LetterInterface() {
       )}
       <div
         className={`flex flex-col justify-center bg-gray-700 w-full px-4  max-w-[880px] rounded-xl transition-all duration-700 overflow-hidden ${
-          letterPoolFull ? "h-60 py-6" : "h-0 py-0"
+          letterPoolFull ? "h-52 py-6" : "h-0 py-0"
         }`}
       >
         <SelectedLetters

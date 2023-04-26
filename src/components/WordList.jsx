@@ -2,30 +2,28 @@ import React, { useEffect, useState, useCallback } from "react";
 import { getWord } from "../api";
 
 function WordList({ words, bestWordLength, setBestWordLength }) {
-  const [wordBackgrounds, setWordBackgrounds] = useState(() =>
-    words.map(() => "bg-orange-300")
-  );
+  const [wordValid, setWordValid] = useState([]);
   const [prevWordsLength, setPrevWordsLength] = useState(0);
 
   const checkWord = useCallback(
     (word, index) => {
       getWord(word)
         .then((res) => {
-          const newWordBackgrounds = [...wordBackgrounds];
-          newWordBackgrounds[index] = "bg-green-400";
-          setWordBackgrounds(newWordBackgrounds);
+          const newWordValid = [...wordValid];
+          newWordValid[index] = true;
+          setWordValid(newWordValid);
 
           if (word.length > bestWordLength) {
             setBestWordLength(word.length);
           }
         })
         .catch(() => {
-          const newWordBackgrounds = [...wordBackgrounds];
-          newWordBackgrounds[index] = "bg-red-400";
-          setWordBackgrounds(newWordBackgrounds);
+          const newWordValid = [...wordValid];
+          newWordValid[index] = false;
+          setWordValid(newWordValid);
         });
     },
-    [wordBackgrounds, bestWordLength, setBestWordLength]
+    [wordValid, bestWordLength, setBestWordLength]
   );
 
   useEffect(() => {
@@ -44,11 +42,16 @@ function WordList({ words, bestWordLength, setBestWordLength }) {
             return (
               <li
                 key={i}
-                onClick={() => checkWord(word, i)}
                 className={`${
-                  wordBackgrounds[i] || "bg-orange-300"
-                } px-6 py-2 rounded-full capitalize font-extrabold text-2xl`}
+                  wordValid[i] ? "bg-green-300" : "bg-red-400"
+                } px-6 py-2 rounded-full capitalize font-extrabold text-2xl relative`}
               >
+                {wordValid[i] && (
+                  <p className="absolute right-[-8px] top-[-8px] text-center font-bold text-white bg-black rounded-full w-8 h-8">
+                    {word.length}
+                  </p>
+                )}
+
                 {word}
               </li>
             );
