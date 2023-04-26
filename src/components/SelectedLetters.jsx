@@ -11,7 +11,7 @@ function SelectedLetters({
   };
   return (
     <div className="flex gap-6 flex-col  items-center">
-      <p className="text-6xl tracking-widest capitalize bg-white py-2 px-10 rounded-full">
+      <p className="text-4xl md:text-6xl tracking-widest capitalize bg-white py-2 px-10 rounded-full">
         {Array(9)
           .fill("_")
           .map((letter, index) => {
