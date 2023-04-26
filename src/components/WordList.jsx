@@ -5,6 +5,7 @@ function WordList({ words, bestWordLength, setBestWordLength }) {
   const [wordBackgrounds, setWordBackgrounds] = useState(() =>
     words.map(() => "bg-orange-300")
   );
+  const [prevWordsLength, setPrevWordsLength] = useState(0);
 
   const checkWord = useCallback(
     (word, index) => {
@@ -28,8 +29,12 @@ function WordList({ words, bestWordLength, setBestWordLength }) {
   );
 
   useEffect(() => {
-    checkWord(words[words.length - 1], words.length - 1);
-  }, [words, checkWord]);
+    if (words.length > prevWordsLength) {
+      const index = words.length - 1;
+      checkWord(words[index], index);
+    }
+    setPrevWordsLength(words.length);
+  }, [words, prevWordsLength, checkWord]);
 
   return (
     <div>
