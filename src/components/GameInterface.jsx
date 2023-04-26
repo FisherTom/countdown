@@ -28,6 +28,7 @@ function LetterInterface() {
     setLetterPool([]);
     setLetterPoolFull(false);
     setWords([]);
+    setUsedLetters([]);
     setBestWordLength(0);
     setGameOngoing(false);
     setRoundFinished(false);
@@ -41,8 +42,7 @@ function LetterInterface() {
         }`}
       >
         <p className="text-center text-3xl font-light">
-          <span className="font-extrabold text-4xl">Welcome to Countdown</span>
-          <br /> select letters to start the game
+          select letters to start the game
         </p>
       </div>
 
