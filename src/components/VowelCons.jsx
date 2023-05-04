@@ -30,24 +30,22 @@ function VowelCons({ setLetterPool, letterPool }) {
   };
 
   return (
-    <div>
-      <div className="flex gap-6 justify-center">
-        <div
-          className={
-            "px-12 h-16 bg-red-400 text-red-900 font-extrabold rounded-full flex justify-center items-center text-xl"
-          }
-          onClick={() => handleAddLetter(true)}
-        >
-          Vowel
-        </div>
-        <div
-          className={
-            "px-12  h-16 bg-green-400 text-green-900 font-extrabold rounded-full flex justify-center items-center text-xl"
-          }
-          onClick={() => handleAddLetter(false)}
-        >
-          Consonant
-        </div>
+    <div className="flex gap-6 justify-center">
+      <div
+        className={
+          "px-10 h-16 bg-slate-800 text-white font-extrabold rounded-full flex justify-center items-center text-lg md:text-xl cursor-pointer shadow-sm hover:shadow-lg"
+        }
+        onClick={() => handleAddLetter(true)}
+      >
+        Vowel
+      </div>
+      <div
+        className={
+          "px-10 h-16 bg-slate-800 text-white font-extrabold rounded-full flex justify-center items-center text-lg md:text-xl cursor-pointer shadow-sm hover:shadow-lg"
+        }
+        onClick={() => handleAddLetter(false)}
+      >
+        Consonant
       </div>
     </div>
   );

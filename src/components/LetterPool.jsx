@@ -23,8 +23,10 @@ function LetterPool({
         return (
           <li
             key={i}
-            className={`w-20 h-20 rounded-lg flex justify-center items-center text-4xl font-extrabold shadow-md hover:shadow-lg ${
-              usedLetters.includes(i) ? "bg-gray-600" : "bg-slate-100"
+            className={`w-20 h-20 rounded flex justify-center items-center text-6xl capitalize font-extrabold shadow-md hover:shadow-lg cursor-pointer ${
+              usedLetters.includes(i)
+                ? "bg-gray-900  text-gray-600"
+                : "bg-gradient-to-r from-blue-600 to-blue-800 text-white"
             } `}
             onClick={() => handleAddWordLetter(letter, i)}
           >

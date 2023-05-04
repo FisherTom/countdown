@@ -32,7 +32,7 @@ function Timer({ gameOngoing, setGameOngoing, setRoundFinished }) {
     <div className="bg-gray-300 rounded-xl flex items-center justify-center w-full h-16 max-w-[880px] relative">
       <p className="text-5xl z-10 font-extrabold">{displayText()}</p>
       <div
-        className="absolute left-0 h-16 bg-green-400 z-0 rounded-xl transition-all duration-1000"
+        className="absolute left-0 h-16 bg-emerald-400 z-0 rounded-xl transition-all duration-1000"
         style={{ width: `${counter * 3.33}%` }}
       />
     </div>
