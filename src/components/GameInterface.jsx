@@ -84,17 +84,6 @@ function LetterInterface() {
         />
       )}
 
-      {roundFinished && (
-        <div
-          className="bg-slate-800 text-white font-bold rounded-full py-2 px-6 cursor-pointer shadow-md hover:shadow-xl"
-          onClick={() => {
-            handleNewRound();
-          }}
-        >
-          <p>Start New Round</p>
-        </div>
-      )}
-
       <div
         className={`flex flex-col justify-center bg-slate-800 w-full px-4  max-w-[880px] rounded-xl transition-all duration-700 overflow-hidden ${
           gameOngoing ? "h-52 py-6" : "h-0 py-0"
@@ -116,6 +105,16 @@ function LetterInterface() {
             setWordLetters={setWordLetters}
             letterPool={letterPool}
           />
+        )}
+        {roundFinished && (
+          <div
+            className="bg-slate-800 text-white font-bold rounded-full py-2 px-6 cursor-pointer shadow-md hover:shadow-xl"
+            onClick={() => {
+              handleNewRound();
+            }}
+          >
+            <p>Start New Round</p>
+          </div>
         )}
         {!letterPoolFull && (
           <VowelCons letterPool={letterPool} setLetterPool={setLetterPool} />
